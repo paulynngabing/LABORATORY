@@ -4,8 +4,8 @@
 using namespace std;
 namespace fs = filesystem;
 
-string getInput(const string &prompt) {
-    cout << prompt;
+string getInput(const string &project) {
+    cout << project;
     string input;
     getline(cin, input);
     return input;
@@ -68,42 +68,42 @@ void changeDirectory(fs::path &currentPath) {
     string choice;
     getline(cin, choice);
 
-    fs::path newPath;
+    fs::path Path;
 
     if (choice == "1") {
-        newPath = currentPath.parent_path();
+        Path = currentPath.parent_path();
     } 
     else if (choice == "2") {
-        newPath = currentPath.root_name().empty() ? "C:\\" : currentPath.root_name().string() + "\\";
-        newPath = "/";
+        Path = currentPath.root_name().empty() ? "C:\\" : currentPath.root_name().string() + "\\";
+        Path = "/";
     } 
     else if (choice == "3") {
         string customPath = getInput("\nEnter full path: ");
-        newPath = customPath;
+        Path = customPath;
     } 
     else {
         cout << "Invalid choice!\n";
         return;
     }
-    if (fs::exists(newPath) && fs::is_directory(newPath)) {
-        currentPath = newPath;
-        fs::current_path(newPath);
+    if (fs::exists(Path) && fs::is_directory(Path)) {
+        currentPath = Path;
+        fs::current_path(Path);
         cout << "Current directory changed to: " << currentPath.string() << endl;
     } else {
-        cout << "Error: Directory \"" << newPath.string() << "\" not found!" << endl;
+        cout << "Error: Directory \"" << Path.string() << "\" not found!" << endl;
     }
 }
 int main() {
     fs::path currentPath = fs::current_path();
 
-    while (true) {	
-        std::cout << "\nMain Menu:\n";
-        std::cout << "Current Path: " << currentPath.string() << "\n";
-        std::cout << "[1] List Files\n";
-        std::cout << "[2] Create Directory\n";
-        std::cout << "[3] Change Directory\n";
-        std::cout << "[4] Exit List Files\n";
-        std::cout << "Enter your choice: ";
+    while (true) {
+		cout << "Current Path: " << currentPath.string() << "\n";	
+        cout << "\nMain Menu:\n";
+        cout << "[1] List Files\n";
+        cout << "[2] Create Directory\n";
+        cout << "[3] Change Directory\n";
+        cout << "[4] Exit List Files\n";
+        cout << "Enter your choice: ";
 
         string choice;
         getline(cin, choice);
@@ -112,10 +112,10 @@ int main() {
         else if (choice == "2") createDirectory();
         else if (choice == "3") changeDirectory(currentPath);
         else if (choice == "4") {
-            std::cout << "Exiting program...\n";
+            cout << "Exiting program...\n";
             break;
         } else {
-            std::cout << "Invalid choice! Please try again.\n";
+            cout << "Invalid choice! Please try again.\n";
         }
     }
     system("cls");
