@@ -13,25 +13,25 @@ string getInput(const string &prompt) {
 void listAllFiles(const fs::path &path) {
     cout << "\nFiles in current directory:\n";
     for (const auto &entry : fs::directory_iterator(path)) {
-        std::cout << " - " << entry.path().filename().string() << std::endl;
+        cout << " - " << entry.path().filename().string() << endl;
     }
 }
 void listByExtension(const fs::path &path) {
-    string ext = getInput("Enter extension (e.g., .txt): ");
-    std::cout << "\nFiles with extension " << ext << ":\n";
+    string extend = getInput("Enter extension (e.g., .txt): ");
+    cout << "\nFiles with extension " << ext << ":\n";
     for (const auto &entry : fs::directory_iterator(path)) {
-        if (entry.path().extension() == ext) {
-            std::cout << " - " << entry.path().filename().string() << std::endl;
+        if (entry.path().extension() == extend) {
+            cout << " - " << entry.path().filename().string() << endl;
         }
     }
 }
 void listByPattern(const fs::path &path) {
     string pattern = getInput("Enter search pattern: ");
-    std::cout << "\nFiles matching pattern '" << pattern << "':\n";
+    cout << "\nFiles matching pattern '" << pattern << "':\n";
     for (const auto &entry : fs::directory_iterator(path)) {
         string filename = entry.path().filename().string();
         if (filename.find(pattern) != string::npos) {
-            std::cout << " - " << filename << std::endl;
+            cout << " - " << filename << endl;
         }
     }
 }
