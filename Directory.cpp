@@ -18,7 +18,7 @@ void listAllFiles(const fs::path &path) {
 }
 void listByExtension(const fs::path &path) {
     string extend = getInput("Enter extension (e.g., .txt): ");
-    cout << "\nFiles with extension " << ext << ":\n";
+    cout << "\nFiles with extension " << extend << ":\n";
     for (const auto &entry : fs::directory_iterator(path)) {
         if (entry.path().extension() == extend) {
             cout << " - " << entry.path().filename().string() << endl;
@@ -36,11 +36,11 @@ void listByPattern(const fs::path &path) {
     }
 }
 void listFilesMenu(const fs::path &path) {
-    std::cout << "\n[1] List All Files\n";
-    std::cout << "[2] List by Extension (e.g., .txt)\n";
-    std::cout << "[3] List by Pattern (e.g., moha *.*)\n";
-    std::cout << "Enter choice: ";
-    std::string choice;
+    cout << "\n[1] List All Files\n";
+    cout << "[2] List by Extension (e.g., .txt)\n";
+    cout << "[3] List by Pattern (e.g., moha *.*)\n";
+    cout << "Enter choice: ";
+    string choice;
     getline(cin, choice);
 
     if (choice == "1") listAllFiles(path);
@@ -52,19 +52,19 @@ void createDirectory() {
     string dirname = getInput("\nEnter directory name: ");
     try {
         if (fs::create_directory(dirname)) {
-            std::cout << "Directory '" << dirname << "' created successfully.\n";
+            cout << "Directory '" << dirname << "' created successfully.\n";
         } else {
-            std::cout << "Directory '" << dirname << "' already exists.\n";
+            cout << "Directory '" << dirname << "' already exists.\n";
         }
     } catch (const exception &e) {
-        std::cout << "Error: " << e.what() << std::endl;
+        cout << "Error: " << e.what() << endl;
     }
 }
 void changeDirectory(fs::path &currentPath) {
-    std::cout << "\n[1] Move to Parent Directory\n";
-    std::cout << "[2] Move to Root Directory\n";
-    std::cout << "[3] Enter Custom Path (e.g., C:\\Users\\Documents)\n";
-    std::cout << "Enter choice: ";
+    cout << "\n[1] Move to Parent Directory\n";
+    cout << "[2] Move to Root Directory\n";
+    cout << "[3] Enter Custom Path (e.g., C:\\Users\\Documents)\n";
+    cout << "Enter choice: ";
     string choice;
     getline(cin, choice);
 
@@ -82,15 +82,15 @@ void changeDirectory(fs::path &currentPath) {
         newPath = customPath;
     } 
     else {
-        std::cout << "Invalid choice!\n";
+        cout << "Invalid choice!\n";
         return;
     }
     if (fs::exists(newPath) && fs::is_directory(newPath)) {
         currentPath = newPath;
         fs::current_path(newPath);
-        std::cout << "Current directory changed to: " << currentPath.string() << std::endl;
+        cout << "Current directory changed to: " << currentPath.string() << endl;
     } else {
-        std::cout << "Error: Directory \"" << newPath.string() << "\" not found!" << std::endl;
+        cout << "Error: Directory \"" << newPath.string() << "\" not found!" << endl;
     }
 }
 int main() {
@@ -102,7 +102,7 @@ int main() {
         std::cout << "[1] List Files\n";
         std::cout << "[2] Create Directory\n";
         std::cout << "[3] Change Directory\n";
-        std::cout << "[4] Exit\n";
+        std::cout << "[4] Exit List Files\n";
         std::cout << "Enter your choice: ";
 
         string choice;
