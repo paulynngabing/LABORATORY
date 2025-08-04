@@ -97,7 +97,7 @@ int main() {
     fs::path currentPath = fs::current_path();
 
     while (true) {
-		cout << "Current Path: " << currentPath.string() << "\n";	
+		cout << "\nCurrent Path: " << currentPath.string() << "\n";	
         cout << "\nMain Menu:\n";
         cout << "[1] List Files\n";
         cout << "[2] Create Directory\n";
