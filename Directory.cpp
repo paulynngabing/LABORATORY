@@ -2,7 +2,7 @@
 #include <filesystem>
 #include <string>
 using namespace std;
-namespace fs = std::filesystem;
+namespace fs = filesystem;
 
 string getInput(const string &prompt) {
     std::cout << prompt;
