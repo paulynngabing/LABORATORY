@@ -5,13 +5,13 @@ using namespace std;
 namespace fs = filesystem;
 
 string getInput(const string &prompt) {
-    std::cout << prompt;
-    std::string input;
-    std::getline(cin, input);
+    cout << prompt;
+    string input;
+    getline(cin, input);
     return input;
 }
 void listAllFiles(const fs::path &path) {
-    std::cout << "\nFiles in current directory:\n";
+    cout << "\nFiles in current directory:\n";
     for (const auto &entry : fs::directory_iterator(path)) {
         std::cout << " - " << entry.path().filename().string() << std::endl;
     }
